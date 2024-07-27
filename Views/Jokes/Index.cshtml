@@ -1,11 +1,10 @@
-﻿@model IEnumerable<JokesWebApp.Models.Joke>
-
+﻿@model IEnumerable<JokesWebApp.Models.Joke> // the model tells us what the page will be about IEnumerable meaning its a list
+<!--// removed joke answers  -->
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -15,20 +14,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.JokeQuestion)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JokeAnswer)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) { // generates each row in the table
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.JokeQuestion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JokeAnswer)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

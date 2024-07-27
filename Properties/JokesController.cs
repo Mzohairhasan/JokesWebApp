@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JokesWebApp.Data;
 using JokesWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Properties
 {
@@ -32,7 +33,7 @@ namespace JokesWebApp.Properties
         }
         // POST: Jokes/ShowSearchResults
         public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
-        {
+        { 
             return View("Index", await _context.Joke.Where( j => j.JokeQuestion.Contains(SearchPhrase)).ToListAsync()); // can modify the index serach result to filter the custom search that was inputted
         }
 
@@ -55,6 +56,8 @@ namespace JokesWebApp.Properties
         }
 
         // GET: Jokes/Create
+
+        [Authorize] // uses Microsoft.AspNetCore.Authorization library to make sure you log in before you are able to "Create()"
         public IActionResult Create()
         {
             return View();
